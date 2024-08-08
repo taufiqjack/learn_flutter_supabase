@@ -14,10 +14,8 @@ class HomeController extends State<HomeView> {
     setState(() {});
     await Supabase.instance.client.auth.signOut();
     Future.delayed(
-      const Duration(seconds: 3),
+      const Duration(seconds: 1),
       () {
-        isAsync = true;
-        setState(() {});
         LOGGEDBOX.clear();
         Go.to(const SignInView());
       },

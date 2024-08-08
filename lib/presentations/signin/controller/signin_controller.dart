@@ -14,7 +14,6 @@ class SignInController extends State<SignInView> {
   bool isAsync = false;
   final ValueNotifier<bool> validForm = ValueNotifier<bool>(false);
 
-  final supabase = Supabase.instance.client;
   bool showPassword = true;
 
   void toggleShowPassword() {
@@ -25,16 +24,19 @@ class SignInController extends State<SignInView> {
   btnSignIn() async {
     isAsync = true;
     setState(() {});
-    final response = await supabase.auth.signInWithPassword(
-        email: emailField.text, password: passwordField.text);
-
-    Future.delayed(const Duration(seconds: 3), () {
-      if (response.user == null) {
+    Future.delayed(const Duration(seconds: 3), () async {
+      try {
+        await Supabase.instance.client.auth.signInWithPassword(
+            email: emailField.text, password: passwordField.text);
+        LOGGEDBOX.put(LOGGED, true);
+        Go.to(const HomeView());
+      } on AuthException catch (e) {
         isAsync = false;
         setState(() {});
-        Alert(
+        return Alert(
+            // ignore: use_build_context_synchronously
             context: context,
-            desc: 'error',
+            desc: e.message,
             style: AlertStyle(
                 descPadding: const EdgeInsets.only(top: 10),
                 descStyle: TextStyle(color: red.withOpacity(0.7))),
@@ -49,11 +51,30 @@ class SignInController extends State<SignInView> {
                 onPressed: () => Go.back(),
               )
             ]).show();
-      } else {
-        LOGGEDBOX.put(LOGGED, true);
-        Go.to(const HomeView());
       }
     });
+/* 
+    Future.delayed(const Duration(seconds: 3), () {
+      isAsync = false;
+      setState(() {});
+      Alert(
+          context: context,
+          desc: 'error',
+          style: AlertStyle(
+              descPadding: const EdgeInsets.only(top: 10),
+              descStyle: TextStyle(color: red.withOpacity(0.7))),
+          type: AlertType.error,
+          buttons: [
+            DialogButton(
+              color: greyThree,
+              child: const Text(
+                'OK',
+                style: TextStyle(color: white, fontSize: 16),
+              ),
+              onPressed: () => Go.back(),
+            )
+          ]).show();
+    }); */
   }
 
   @override
