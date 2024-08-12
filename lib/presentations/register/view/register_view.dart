@@ -22,6 +22,15 @@ class RegisterView extends StatefulWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              const CommonText(
+                text: 'Register',
+                fontSize: 18,
+                color: greyLightFive,
+                fontWeight: FontWeight.w700,
+              ),
+              const SizedBox(
+                height: 30,
+              ),
               CommonTextField(
                   controller: controller.emailField,
                   hintText: 'email',
