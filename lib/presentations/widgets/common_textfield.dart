@@ -22,29 +22,30 @@ class CommonTextField extends StatelessWidget {
   final int? maxLine;
   final int? maxLength;
   final List<TextInputFormatter>? inputFormatter;
+  final TextCapitalization? capitalization;
 
-  const CommonTextField({
-    super.key,
-    required this.hintText,
-    this.suffix,
-    this.suffixLabel,
-    this.controller,
-    required this.textInputType,
-    this.textInputAction,
-    this.prefixIcon,
-    this.suffixIcon,
-    this.readOnly,
-    this.filled,
-    this.focusNode,
-    this.onTap,
-    this.onChange,
-    this.onComplete,
-    this.validator,
-    this.maxLine,
-    this.maxLength,
-    this.inputFormatter,
-    this.prefixLabel,
-  });
+  const CommonTextField(
+      {super.key,
+      required this.hintText,
+      this.suffix,
+      this.suffixLabel,
+      this.controller,
+      required this.textInputType,
+      this.textInputAction,
+      this.prefixIcon,
+      this.suffixIcon,
+      this.readOnly,
+      this.filled,
+      this.focusNode,
+      this.onTap,
+      this.onChange,
+      this.onComplete,
+      this.validator,
+      this.maxLine,
+      this.maxLength,
+      this.inputFormatter,
+      this.prefixLabel,
+      this.capitalization});
 
   @override
   Widget build(BuildContext context) {
@@ -59,6 +60,7 @@ class CommonTextField extends StatelessWidget {
       onTap: onTap,
       focusNode: focusNode,
       onChanged: onChange,
+      textCapitalization: capitalization ?? TextCapitalization.none,
       onEditingComplete: onComplete,
       decoration: InputDecoration(
         hintText: hintText,
@@ -77,9 +79,10 @@ class CommonTextField extends StatelessWidget {
                     ?.copyWith(color: black),
               )
             : null,
+        label: Text(hintText),
         suffixIcon: suffixIcon,
         labelStyle:
-            Theme.of(context).textTheme.titleMedium?.copyWith(color: black),
+            Theme.of(context).textTheme.titleMedium?.copyWith(color: greyThree),
         border: OutlineInputBorder(
           borderSide: const BorderSide(color: greyThree),
           borderRadius: BorderRadius.circular(10),

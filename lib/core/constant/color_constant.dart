@@ -38,6 +38,7 @@ const Color greenFour = Color(0xFF008F4A);
 const Color greenFive = Color(0xFF0C690A);
 const Color greenLightTwo = Color(0xFFEEFFF6);
 const Color purple = Color(0xFF800080);
+const Color purpleTwo = Color(0xFF9754E4);
 const Color redTwo = Color(0xFFFF0000);
 const Color redLight = Color(0xFFFFF9F9);
 const Color redThree = Color(0xFFDA9898);
