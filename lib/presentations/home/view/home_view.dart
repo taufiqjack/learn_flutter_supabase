@@ -19,10 +19,15 @@ class HomeView extends StatefulWidget {
       child: Scaffold(
         backgroundColor: white,
         appBar: AppBar(
-          title: const Text('Outdoor Catalogs'),
+          iconTheme: IconThemeData(color: purpleTwo),
+          title: const CommonText(
+            text: 'Outdoor Catalogs',
+            color: purpleTwo,
+          ),
           centerTitle: true,
+          backgroundColor: white,
           automaticallyImplyLeading: false,
-          elevation: 0,
+          elevation: 0.5,
         ),
         endDrawer: Drawer(
             child: Stack(

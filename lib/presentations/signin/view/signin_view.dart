@@ -3,6 +3,7 @@ import 'package:learn_flutter_supabase/core/constant/color_constant.dart';
 import 'package:learn_flutter_supabase/core/routes/route_constants.dart';
 import 'package:learn_flutter_supabase/presentations/register/view/register_view.dart';
 import 'package:learn_flutter_supabase/presentations/signin/controller/signin_controller.dart';
+import 'package:learn_flutter_supabase/presentations/signin_otp/view/sigin_otp_view.dart';
 import 'package:learn_flutter_supabase/presentations/widgets/common_button.dart';
 import 'package:learn_flutter_supabase/presentations/widgets/common_modal_porgress.dart';
 import 'package:learn_flutter_supabase/presentations/widgets/common_password_field.dart';
@@ -70,9 +71,36 @@ class SignInView extends StatefulWidget {
                   ),
                 ),
                 const SizedBox(
+                  height: 10,
+                ),
+                Align(
+                  alignment: Alignment.center,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const CommonText(text: 'or'),
+                      InkWell(
+                        onTap: () => Go.to(const SigninOtpView()),
+                        child: const CommonText(
+                          text: 'Signin with OTP',
+                          color: red,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(
                   height: 20,
                 ),
                 const CommonText(text: 'belum memiliki akun?'),
+              ],
+            )),
+        bottomNavigationBar: Padding(
+            padding: const EdgeInsets.only(bottom: 16, right: 16),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
                 InkWell(
                   onTap: () {
                     Go.to(const RegisterView());
@@ -81,7 +109,7 @@ class SignInView extends StatefulWidget {
                     text: 'Register',
                     color: red,
                   ),
-                )
+                ),
               ],
             )),
       ),

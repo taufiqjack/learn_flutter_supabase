@@ -42,6 +42,7 @@ dependencies:
   hive: ^2.2.3
   path_provider: ^2.1.1
   flutter_slidable: ^3.0.1
+  pin_code_fields: ^8.0.1
 
 dev_dependencies:
   flutter_test:
