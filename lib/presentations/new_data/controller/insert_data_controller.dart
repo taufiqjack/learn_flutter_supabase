@@ -24,30 +24,34 @@ class InsertDataController extends State<InsertDataView> {
   final supabase = Supabase.instance.client;
 
   btnInsert() async {
-    /*   isAsync = true;
+    isAsync = true;
     setState(() {});
     Future.delayed(const Duration(seconds: 3), () async {
       try {
-        await supabase.from('products').insert({'name': nameField.text}); */
-    Alert(
-        context: context,
-        desc: 'data success',
-        style: const AlertStyle(
-            descPadding: EdgeInsets.only(top: 10),
-            descStyle: TextStyle(color: greySix)),
-        type: AlertType.success,
-        buttons: [
-          DialogButton(
-            color: greenTwo,
-            child: const Text(
-              'OK',
-              style: TextStyle(
-                  color: greySix, fontSize: 16, fontWeight: FontWeight.w700),
-            ),
-            onPressed: () => Go.back(),
-          )
-        ]).show().then((value) => Go.to(const HomeView()));
-    /*   } on AuthException catch (e) {
+        await supabase
+            .from('products')
+            .insert({'name': nameField.text}).select();
+        Alert(
+            context: context,
+            desc: 'data success',
+            style: const AlertStyle(
+                descPadding: EdgeInsets.only(top: 10),
+                descStyle: TextStyle(color: greySix)),
+            type: AlertType.success,
+            buttons: [
+              DialogButton(
+                color: greenTwo,
+                child: const Text(
+                  'OK',
+                  style: TextStyle(
+                      color: greySix,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700),
+                ),
+                onPressed: () => Go.back(),
+              )
+            ]).show().then((value) => Go.to(const HomeView()));
+      } on AuthException catch (e) {
         isAsync = false;
         setState(() {});
         return Alert(
@@ -69,7 +73,7 @@ class InsertDataController extends State<InsertDataView> {
               )
             ]).show();
       }
-    }); */
+    });
   }
 
   bool isFormValid() => nameField.text.isNotEmpty;

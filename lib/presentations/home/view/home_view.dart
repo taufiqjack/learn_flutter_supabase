@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:learn_flutter_supabase/core/constant/color_constant.dart';
 import 'package:learn_flutter_supabase/core/routes/route_constants.dart';
 import 'package:learn_flutter_supabase/core/utils/const.dart';
 import 'package:learn_flutter_supabase/presentations/home/controller/home_controller.dart';
 import 'package:learn_flutter_supabase/presentations/new_data/view/insert_data_view.dart';
+import 'package:learn_flutter_supabase/presentations/update_data/view/update_data_view.dart';
 import 'package:learn_flutter_supabase/presentations/widgets/common_modal_porgress.dart';
 import 'package:learn_flutter_supabase/presentations/widgets/common_textstyle.dart';
 
@@ -60,18 +62,43 @@ class HomeView extends StatefulWidget {
                     itemBuilder: (context, index) {
                       final product = products[index];
                       return Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 10),
-                        child: ListTile(
-                          leading: product['photo_product'] == null
-                              ? const SizedBox()
-                              : Image.network(
-                                  '${dotenv.env[IMG_PATH]}${product['photo_product']}?token=${dotenv.env[TOKEN]}',
-                                  height: 50,
-                                  width: 50,
+                        padding: const EdgeInsets.only(
+                            right: 10, left: 10, bottom: 10),
+                        child: Slidable(
+                          endActionPane: ActionPane(
+                              motion: const ScrollMotion(),
+                              children: [
+                                SlidableAction(
+                                  onPressed: (context) {
+                                    controller.deleteById(
+                                        int.parse(product['id'].toString()));
+                                  },
+                                  label: 'delete',
+                                  backgroundColor: red,
+                                  icon: Icons.delete,
+                                )
+                              ]),
+                          child: Card(
+                            elevation: 0.5,
+                            child: InkWell(
+                              onTap: () => Go.to(UpdateDataView(
+                                  id: product['id'].toString(),
+                                  name: product['name'])),
+                              child: ListTile(
+                                leading: product['photo_product'] == null
+                                    ? const SizedBox()
+                                    : Image.network(
+                                        '${dotenv.env[IMG_PATH]}${product['photo_product']}?token=${dotenv.env[TOKEN]}',
+                                        height: 50,
+                                        width: 50,
+                                      ),
+                                title: Text(
+                                  '${index + 1}. ${product['name']}',
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.w700),
                                 ),
-                          title: Text(
-                            '${index + 1}. ${product['name']}',
-                            style: const TextStyle(fontWeight: FontWeight.w700),
+                              ),
+                            ),
                           ),
                         ),
                       );
