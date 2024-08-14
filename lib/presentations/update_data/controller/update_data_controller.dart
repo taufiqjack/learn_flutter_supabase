@@ -10,6 +10,8 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 class UpdateDataController extends State<UpdateDataView> {
   final nameField = TextEditingController();
+  final priceField = TextEditingController();
+  final ValueNotifier<bool> validForm = ValueNotifier<bool>(false);
   bool isAsync = false;
 
   final supabse = Supabase.instance.client;
@@ -19,9 +21,10 @@ class UpdateDataController extends State<UpdateDataView> {
     setState(() {});
     Future.delayed(const Duration(seconds: 3), () async {
       try {
-        await supabse
-            .from('products')
-            .update({'name': nameField.text}).eq('id', widget.id);
+        await supabse.from('products').update({
+          'name': nameField.text,
+          'price': priceField.text,
+        }).eq('id', widget.id);
         Alert(
             context: context,
             desc: 'update success',
@@ -66,9 +69,36 @@ class UpdateDataController extends State<UpdateDataView> {
     });
   }
 
+  bool isFormValid() => nameField.text.isNotEmpty && priceField.text.isNotEmpty;
+
+  ValueListenableBuilder<T> listenableBuilder<T>(
+      {required ValueNotifier<T> notifier,
+      required Widget Function(BuildContext context, T value, Widget? widget)
+          builder}) {
+    return ValueListenableBuilder<T>(
+        valueListenable: notifier, builder: builder);
+  }
+
+  ValueListenableBuilder<bool> saveButtonState(
+      {required Widget Function(bool isEnabled) builder}) {
+    return listenableBuilder<bool>(
+      notifier: validForm,
+      builder: (context, isEnabled, child) {
+        return builder(isEnabled);
+      },
+    );
+  }
+
   @override
   void initState() {
     nameField.text = widget.name;
+    priceField.text = widget.price.toString();
+    nameField.addListener(() {
+      validForm.value = isFormValid();
+    });
+    priceField.addListener(() {
+      validForm.value = isFormValid();
+    });
     super.initState();
   }
 

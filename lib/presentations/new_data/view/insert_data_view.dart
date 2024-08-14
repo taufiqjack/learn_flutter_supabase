@@ -32,6 +32,7 @@ class InsertDataView extends StatefulWidget {
               const CommonText(
                 text: 'Add Data',
                 fontSize: 16,
+                fontWeight: FontWeight.w700,
               ),
               const SizedBox(
                 height: 15,
@@ -41,6 +42,14 @@ class InsertDataView extends StatefulWidget {
                   hintText: 'Name',
                   capitalization: TextCapitalization.words,
                   textInputType: TextInputType.text),
+              const SizedBox(
+                height: 10,
+              ),
+              CommonTextField(
+                  controller: controller.priceField,
+                  hintText: 'Price',
+                  capitalization: TextCapitalization.words,
+                  textInputType: TextInputType.number),
               const SizedBox(
                 height: 15,
               ),

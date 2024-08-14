@@ -9,10 +9,12 @@ import 'package:learn_flutter_supabase/presentations/widgets/common_textstyle.da
 class UpdateDataView extends StatefulWidget {
   final dynamic id;
   final String name;
+  final String? price;
   const UpdateDataView({
     super.key,
     this.id,
     required this.name,
+    this.price,
   });
 
   Widget build(BuildContext context, UpdateDataController controller) {
@@ -48,12 +50,23 @@ class UpdateDataView extends StatefulWidget {
                 textInputType: TextInputType.text,
               ),
               const SizedBox(
+                height: 10,
+              ),
+              CommonTextField(
+                controller: controller.priceField,
+                hintText: 'price',
+                textInputType: TextInputType.text,
+              ),
+              const SizedBox(
                 height: 20,
               ),
-              CommonButton(
-                buttonText: 'Save',
-                onTap: () => controller.updateData(),
-                buttonBackgroundColor: purpleTwo,
+              controller.saveButtonState(
+                builder: (isEnabled) => CommonButton(
+                  buttonText: 'Save',
+                  isEnabled: isEnabled,
+                  onTap: () => controller.updateData(),
+                  buttonBackgroundColor: purpleTwo,
+                ),
               ),
             ],
           ),

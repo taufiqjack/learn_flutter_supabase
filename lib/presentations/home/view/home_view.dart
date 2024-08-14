@@ -87,8 +87,10 @@ class HomeView extends StatefulWidget {
                             elevation: 0.5,
                             child: InkWell(
                               onTap: () => Go.to(UpdateDataView(
-                                  id: product['id'].toString(),
-                                  name: product['name'])),
+                                id: product['id'].toString(),
+                                name: product['name'],
+                                price: product['price'],
+                              )),
                               child: ListTile(
                                 leading: product['photo_product'] == null
                                     ? const SizedBox()
@@ -97,11 +99,11 @@ class HomeView extends StatefulWidget {
                                         height: 50,
                                         width: 50,
                                       ),
-                                title: Text(
-                                  '${index + 1}. ${product['name']}',
-                                  style: const TextStyle(
-                                      fontWeight: FontWeight.w700),
-                                ),
+                                title: CommonText(
+                                    text: '${index + 1}. ${product['name']}',
+                                    fontWeight: FontWeight.w700),
+                                subtitle: CommonText(
+                                    text: 'IDR ${product['price'] ?? '-'}'),
                               ),
                             ),
                           ),

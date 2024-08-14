@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:learn_flutter_supabase/core/constant/color_constant.dart';
+import 'package:learn_flutter_supabase/core/hive/hive_const.dart';
 import 'package:learn_flutter_supabase/core/routes/route_constants.dart';
+import 'package:learn_flutter_supabase/core/utils/const.dart';
 import 'package:learn_flutter_supabase/presentations/home/view/home_view.dart';
 import 'package:learn_flutter_supabase/presentations/signin_otp/view/otp_verification_view.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
@@ -21,6 +23,8 @@ class OtpVerificationController extends State<OtpVerificationView> {
           phone: '+62${widget.phoneNumber}',
           token: otpField.text,
         );
+        LOGGEDBOX.put(LOGGED, true);
+
         Go.to(const HomeView());
         isAsync = false;
         setState(() {});

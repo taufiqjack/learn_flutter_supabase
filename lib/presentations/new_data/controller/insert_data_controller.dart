@@ -10,12 +10,16 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 class InsertDataController extends State<InsertDataView> {
   final nameField = TextEditingController();
+  final priceField = TextEditingController();
   final ValueNotifier<bool> validForm = ValueNotifier<bool>(false);
   bool isAsync = false;
 
   @override
   void initState() {
     nameField.addListener(() {
+      validForm.value = isFormValid();
+    });
+    priceField.addListener(() {
       validForm.value = isFormValid();
     });
     super.initState();
@@ -28,9 +32,10 @@ class InsertDataController extends State<InsertDataView> {
     setState(() {});
     Future.delayed(const Duration(seconds: 3), () async {
       try {
-        await supabase
-            .from('products')
-            .insert({'name': nameField.text}).select();
+        await supabase.from('products').insert({
+          'name': nameField.text,
+          'price': priceField.text,
+        }).select();
         Alert(
             context: context,
             desc: 'data success',
@@ -76,7 +81,7 @@ class InsertDataController extends State<InsertDataView> {
     });
   }
 
-  bool isFormValid() => nameField.text.isNotEmpty;
+  bool isFormValid() => nameField.text.isNotEmpty && priceField.text.isNotEmpty;
 
   ValueListenableBuilder<T> listenableBuilder<T>(
       {required ValueNotifier<T> notifier,
