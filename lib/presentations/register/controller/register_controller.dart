@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:learn_flutter_supabase/core/constant/color_constant.dart';
 import 'package:learn_flutter_supabase/core/routes/route_constants.dart';
@@ -25,14 +27,32 @@ class RegisterController extends State<RegisterView> {
     setState(() {});
     Future.delayed(const Duration(seconds: 3), () async {
       try {
-        await supabase.auth
+        final AuthResponse res = await supabase.auth
             .signUp(email: emailField.text, password: passwordField.text);
-        Go.to(const SignInView());
+
+        res.user != null
+            ? Go.to(const SignInView())
+            : Alert(
+                context: context,
+                desc: 'User already registered',
+                style: AlertStyle(
+                    descPadding: const EdgeInsets.only(top: 10),
+                    descStyle: TextStyle(color: red.withOpacity(0.7))),
+                type: AlertType.error,
+                buttons: [
+                    DialogButton(
+                      color: greyThree,
+                      child: const Text(
+                        'OK',
+                        style: TextStyle(color: white, fontSize: 16),
+                      ),
+                      onPressed: () => Go.back(),
+                    )
+                  ]).show();
       } on AuthException catch (e) {
         isAsync = false;
         setState(() {});
         return Alert(
-            // ignore: use_build_context_synchronously
             context: context,
             desc: e.message,
             style: AlertStyle(

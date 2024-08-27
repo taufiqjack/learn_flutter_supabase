@@ -5,8 +5,6 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 class SupabaseInit {
   static Future<void> init() async {
     await Supabase.initialize(
-      url: '${dotenv.env[BASE_URL]}',
-      anonKey: '${dotenv.env[ANON_KEY]}',
-    );
+        url: '${dotenv.env[BASE_URL]}', anonKey: '${dotenv.env[ANON_KEY]}');
   }
 }
