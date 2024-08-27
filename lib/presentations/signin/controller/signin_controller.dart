@@ -13,6 +13,7 @@ class SignInController extends State<SignInView> {
   final passwordField = TextEditingController();
   bool isAsync = false;
   final ValueNotifier<bool> validForm = ValueNotifier<bool>(false);
+  dynamic currentTime;
 
   bool showPassword = true;
 

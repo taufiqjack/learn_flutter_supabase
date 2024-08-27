@@ -27,7 +27,7 @@ class SigninOtpView extends StatefulWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const CommonText(
-                  text: 'Sigin in with OTP',
+                  text: 'Sign In with OTP',
                   fontSize: 18,
                   color: greyLightFive,
                   fontWeight: FontWeight.w700,
@@ -48,7 +48,7 @@ class SigninOtpView extends StatefulWidget {
                 ),
                 controller.saveButtonState(
                   builder: (isEnabled) => CommonButton(
-                    buttonText: 'Masuk',
+                    buttonText: 'Sign In',
                     isEnabled: isEnabled,
                     onTap: () => controller.btnSignInWA(),
                     size: Size(MediaQuery.of(context).size.width, 40),

@@ -23,16 +23,18 @@ class RegisterController extends State<RegisterView> {
   btnRegister() async {
     isAsync = true;
     setState(() {});
-    final response = await supabase.auth
-        .signUp(email: emailField.text, password: passwordField.text);
-
-    Future.delayed(const Duration(seconds: 3), () {
-      if (response.user == null) {
+    Future.delayed(const Duration(seconds: 3), () async {
+      try {
+        await supabase.auth
+            .signUp(email: emailField.text, password: passwordField.text);
+        Go.to(const SignInView());
+      } on AuthException catch (e) {
         isAsync = false;
         setState(() {});
-        Alert(
+        return Alert(
+            // ignore: use_build_context_synchronously
             context: context,
-            desc: 'error',
+            desc: e.message,
             style: AlertStyle(
                 descPadding: const EdgeInsets.only(top: 10),
                 descStyle: TextStyle(color: red.withOpacity(0.7))),
@@ -47,8 +49,6 @@ class RegisterController extends State<RegisterView> {
                 onPressed: () => Go.back(),
               )
             ]).show();
-      } else {
-        Go.to(const SignInView());
       }
     });
   }

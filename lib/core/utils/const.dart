@@ -6,3 +6,5 @@ const ANON_KEY = 'ANONKEY';
 const IMG_PATH = 'IMG_PATH';
 const LOGGED = 'logged';
 const TOKEN = 'TOKEN';
+
+const String exit_message = 'press again to exit';

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:learn_flutter_supabase/core/component/common_willpop.dart';
 import 'package:learn_flutter_supabase/core/constant/color_constant.dart';
 import 'package:learn_flutter_supabase/core/routes/route_constants.dart';
 import 'package:learn_flutter_supabase/presentations/register/view/register_view.dart';
@@ -23,79 +24,81 @@ class SignInView extends StatefulWidget {
           automaticallyImplyLeading: false,
           backgroundColor: white,
         ),
-        body: Padding(
-            padding: const EdgeInsets.only(right: 20, left: 20),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const CommonText(
-                  text: 'Login',
-                  fontSize: 18,
-                  color: greyLightFive,
-                  fontWeight: FontWeight.w700,
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
-                CommonTextField(
-                  controller: controller.emailField,
-                  hintText: 'email',
-                  textInputType: TextInputType.text,
-                  textInputAction: TextInputAction.next,
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                CommonPasswordField(
-                  controller: controller.passwordField,
-                  filled: true,
-                  fillColor: whiteTwo,
-                  keyboardType: TextInputType.text,
-                  obsecure: true,
-                  showPassword: controller.showPassword,
-                  hintText: 'password',
-                  onClickShowPassword: () => controller.toggleShowPassword(),
-                  action: TextInputAction.done,
-                ),
-                const SizedBox(
-                  height: 12,
-                ),
-                controller.saveButtonState(
-                  builder: (isEnabled) => CommonButton(
-                    buttonText: 'Masuk',
-                    isEnabled: isEnabled,
-                    onTap: () => controller.btnSignIn(),
-                    size: Size(MediaQuery.of(context).size.width, 40),
-                    buttonBackgroundColor: purple.withOpacity(0.8),
-                    buttonTextColor: white,
+        body: WillPopScope(
+          onWillPop: () => willPop(context),
+          child: Padding(
+              padding: const EdgeInsets.only(right: 20, left: 20),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const CommonText(
+                    text: 'Login',
+                    fontSize: 18,
+                    color: greyLightFive,
+                    fontWeight: FontWeight.w700,
                   ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Align(
-                  alignment: Alignment.center,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const CommonText(text: 'or'),
-                      InkWell(
-                        onTap: () => Go.to(const SigninOtpView()),
-                        child: const CommonText(
-                          text: 'Signin with OTP',
-                          color: red,
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  CommonTextField(
+                    controller: controller.emailField,
+                    hintText: 'Email',
+                    textInputType: TextInputType.text,
+                    textInputAction: TextInputAction.next,
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  CommonPasswordField(
+                    controller: controller.passwordField,
+                    filled: true,
+                    fillColor: whiteTwo,
+                    keyboardType: TextInputType.text,
+                    obsecure: true,
+                    showPassword: controller.showPassword,
+                    hintText: 'Password',
+                    onClickShowPassword: () => controller.toggleShowPassword(),
+                    action: TextInputAction.done,
+                  ),
+                  const SizedBox(
+                    height: 12,
+                  ),
+                  controller.saveButtonState(
+                    builder: (isEnabled) => CommonButton(
+                      buttonText: 'Sign In',
+                      isEnabled: isEnabled,
+                      onTap: () => controller.btnSignIn(),
+                      size: Size(MediaQuery.of(context).size.width, 40),
+                      buttonBackgroundColor: purple.withOpacity(0.8),
+                      buttonTextColor: white,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Align(
+                    alignment: Alignment.center,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const CommonText(text: 'or'),
+                        InkWell(
+                          onTap: () => Go.to(const SigninOtpView()),
+                          child: const CommonText(
+                            text: 'Signin with OTP',
+                            color: red,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                const CommonText(text: 'belum memiliki akun?'),
-              ],
-            )),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                ],
+              )),
+        ),
         bottomNavigationBar: Padding(
             padding: const EdgeInsets.only(bottom: 16, right: 16),
             child: Row(

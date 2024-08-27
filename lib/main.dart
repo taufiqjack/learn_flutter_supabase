@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:learn_flutter_supabase/core/hive/hive_const.dart';
 import 'package:learn_flutter_supabase/core/hive/hive_stuff.dart';
 import 'package:learn_flutter_supabase/core/routes/route_constants.dart';
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
     ));
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      builder: FToastBuilder(),
       theme: ThemeData(
           floatingActionButtonTheme: const FloatingActionButtonThemeData(
               backgroundColor: Color.fromARGB(255, 151, 84, 228)),

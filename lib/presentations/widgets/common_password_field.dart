@@ -61,6 +61,7 @@ class CommonPasswordField extends StatelessWidget {
         prefixIcon: prefixIcon,
         labelStyle: TextStyle(fontSize: fontSize, color: greyThree),
         counterText: "",
+        labelText: hintText,
         suffixIcon: obsecure == true
             ? IconButton(
                 icon: Icon(

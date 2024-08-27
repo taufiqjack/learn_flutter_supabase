@@ -33,7 +33,7 @@ class RegisterView extends StatefulWidget {
               ),
               CommonTextField(
                   controller: controller.emailField,
-                  hintText: 'email',
+                  hintText: 'Email',
                   textInputType: TextInputType.text),
               const SizedBox(height: 10),
               CommonPasswordField(
@@ -43,7 +43,7 @@ class RegisterView extends StatefulWidget {
                 keyboardType: TextInputType.text,
                 obsecure: true,
                 showPassword: controller.showPassword,
-                hintText: 'password',
+                hintText: 'Password',
                 onClickShowPassword: () => controller.toggleShowPassword(),
                 action: TextInputAction.done,
               ),
@@ -52,7 +52,7 @@ class RegisterView extends StatefulWidget {
               ),
               controller.saveButtonState(
                 builder: (isEnabled) => CommonButton(
-                  buttonText: 'Registrasi',
+                  buttonText: 'Register',
                   isEnabled: isEnabled,
                   onTap: () => controller.btnRegister(),
                   size: Size(MediaQuery.of(context).size.width, 40),
@@ -63,13 +63,13 @@ class RegisterView extends StatefulWidget {
               const SizedBox(
                 height: 20,
               ),
-              const CommonText(text: 'sudah memiliki akun?'),
+              const CommonText(text: 'Already have an account?'),
               InkWell(
                 onTap: () {
                   Go.to(const SignInView());
                 },
                 child: const CommonText(
-                  text: 'Masuk',
+                  text: 'Sign In',
                   color: red,
                 ),
               )
