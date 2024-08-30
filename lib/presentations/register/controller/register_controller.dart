@@ -9,6 +9,7 @@ import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class RegisterController extends State<RegisterView> {
+  final usernameField = TextEditingController();
   final emailField = TextEditingController();
   final passwordField = TextEditingController();
   final ValueNotifier<bool> validForm = ValueNotifier<bool>(false);
@@ -27,8 +28,10 @@ class RegisterController extends State<RegisterView> {
     setState(() {});
     Future.delayed(const Duration(seconds: 3), () async {
       try {
-        final AuthResponse res = await supabase.auth
-            .signUp(email: emailField.text, password: passwordField.text);
+        final AuthResponse res = await supabase.auth.signUp(
+            email: emailField.text,
+            password: passwordField.text,
+            data: {'username': usernameField.text});
 
         res.user != null
             ? Go.to(const SignInView())

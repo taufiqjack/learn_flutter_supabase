@@ -32,6 +32,11 @@ class RegisterView extends StatefulWidget {
                 height: 30,
               ),
               CommonTextField(
+                  controller: controller.usernameField,
+                  hintText: 'Username',
+                  textInputType: TextInputType.text),
+              const SizedBox(height: 10),
+              CommonTextField(
                   controller: controller.emailField,
                   hintText: 'Email',
                   textInputType: TextInputType.text),

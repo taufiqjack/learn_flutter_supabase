@@ -27,7 +27,7 @@ apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
     compileSdkVersion 34
-    ndkVersion flutter.ndkVersion
+    ndkVersion "25.1.8937393"
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -58,6 +58,13 @@ android {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig signingConfigs.debug
+             android.applicationVariants.all { variant ->
+                variant.outputs.all { output ->
+                  def date = new Date()
+                    outputFileName = "supabase_flutter_${date.format('yyyy-MM-dd')}_v${versionName}-${output.getFilter(com.android.build.OutputFile.ABI)}.apk"
+
+                }
+            }
         }
     }
 }
