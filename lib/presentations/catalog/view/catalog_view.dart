@@ -61,9 +61,9 @@ class CatalogView extends StatefulWidget {
                 child: ListView.builder(
                   physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
-                  itemCount: products.length,
+                  itemCount: products?.length,
                   itemBuilder: (context, index) {
-                    final product = products[index];
+                    final product = products?[index];
                     return Padding(
                       padding: const EdgeInsets.only(
                           right: 10, left: 10, bottom: 10),
@@ -73,7 +73,7 @@ class CatalogView extends StatefulWidget {
                           SlidableAction(
                             onPressed: (context) {
                               controller.deleteById(
-                                  int.parse(product['id'].toString()));
+                                  int.parse(product!['id'].toString()));
                             },
                             label: 'delete',
                             backgroundColor: red,
@@ -84,23 +84,23 @@ class CatalogView extends StatefulWidget {
                           elevation: 0.5,
                           child: InkWell(
                             onTap: () => Go.to(UpdateDataView(
-                              id: product['id'].toString(),
-                              name: product['name'],
-                              price: product['price'],
+                              id: product?['id'].toString(),
+                              name: product?['name'],
+                              price: product?['price'],
                             )),
                             child: ListTile(
-                              leading: product['photo_product'] == null
+                              leading: product?['photo_product'] == null
                                   ? const SizedBox()
                                   : Image.network(
-                                      '${dotenv.env[IMG_PATH]}${product['photo_product']}?token=${dotenv.env[TOKEN]}',
+                                      '${dotenv.env[IMG_PATH]}${product?['photo_product']}?token=${dotenv.env[TOKEN]}',
                                       height: 50,
                                       width: 50,
                                     ),
                               title: CommonText(
-                                  text: '${index + 1}. ${product['name']}',
+                                  text: '${index + 1}. ${product?['name']}',
                                   fontWeight: FontWeight.w700),
                               subtitle: CommonText(
-                                  text: 'IDR ${product['price'] ?? '-'}'),
+                                  text: 'IDR ${product?['price'] ?? '-'}'),
                             ),
                           ),
                         ),
