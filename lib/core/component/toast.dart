@@ -29,7 +29,7 @@ Future showError(ctx, String text) async {
       icon: Icons.cancel,
       color: black,
     ),
-    positionedToastBuilder: (context, child) {
+    positionedToastBuilder: (context, child, gravity) {
       return Positioned(
         top: 0,
         left: 16,
@@ -51,7 +51,7 @@ Future showSuccess(ctx, String text) async {
       icon: Icons.check_circle,
       color: Colors.green,
     ),
-    positionedToastBuilder: (context, child) {
+    positionedToastBuilder: (context, child, gravity) {
       return Positioned(
         top: 0,
         left: 16,
@@ -73,7 +73,7 @@ Future showWarning(ctx, String text) async {
       icon: Icons.error,
       color: Colors.yellow,
     ),
-    positionedToastBuilder: (context, child) {
+    positionedToastBuilder: (context, child, gravity) {
       return Positioned(
         top: 0,
         left: 16,
@@ -119,7 +119,7 @@ Future showErrorBottom(ctx, String text) async {
       icon: Icons.cancel,
       color: Colors.red,
     ),
-    positionedToastBuilder: (context, child) {
+    positionedToastBuilder: (context, child, gravity) {
       return Positioned(
         left: 16,
         right: 16,
@@ -140,7 +140,7 @@ Future showSuccessBottom(ctx, String text) async {
       icon: Icons.check_circle,
       color: Colors.green,
     ),
-    positionedToastBuilder: (context, child) {
+    positionedToastBuilder: (context, child, gravity) {
       return Positioned(
         left: 16,
         right: 16,

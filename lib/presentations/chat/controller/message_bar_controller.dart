@@ -32,9 +32,13 @@ class MessageBarController extends State<MessageBarView> {
         'content': text,
       });
     } on PostgrestException catch (error) {
-      context.showErrorSnackBar(message: error.message);
+      if (mounted) {
+        context.showErrorSnackBar(message: error.message);
+      }
     } catch (_) {
-      context.showErrorSnackBar(message: unexpectedErrorMessage);
+      if (mounted) {
+        context.showErrorSnackBar(message: unexpectedErrorMessage);
+      }
     }
   }
 

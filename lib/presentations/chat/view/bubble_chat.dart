@@ -8,10 +8,10 @@ import 'package:skeleton_text/skeleton_text.dart';
 
 class ChatBubble extends StatelessWidget {
   const ChatBubble({
-    Key? key,
+    super.key,
     required this.message,
     this.profile,
-  }) : super(key: key);
+  });
 
   final Message message;
   final Profile? profile;

@@ -61,9 +61,9 @@ class CatalogView extends StatefulWidget {
                 child: ListView.builder(
                   physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
-                  itemCount: products.length,
+                  itemCount: products?.length,
                   itemBuilder: (context, index) {
-                    final product = products[index];
+                    final product = products![index];
                     return Padding(
                       padding: const EdgeInsets.only(
                           right: 10, left: 10, bottom: 10),

@@ -14,14 +14,14 @@ class ShadowedContainer extends StatelessWidget {
   final double padding;
 
   const ShadowedContainer({
-    Key? key,
+    super.key,
     required this.children,
     this.hero,
     this.borderRadius,
     this.noPadding = false,
     this.width,
     this.padding = 16,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(context) {
@@ -108,9 +108,9 @@ class LeftAlignedColumn extends StatelessWidget {
   final List<Widget> children;
 
   const LeftAlignedColumn({
-    Key? key,
+    super.key,
     required this.children,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(context) => Column(
@@ -125,9 +125,9 @@ class RightAlignedColumn extends StatelessWidget {
   final List<Widget> children;
 
   const RightAlignedColumn({
-    Key? key,
+    super.key,
     required this.children,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(context) => Column(
@@ -142,9 +142,9 @@ class LeftAlignedRow extends StatelessWidget {
   final List<Widget> children;
 
   const LeftAlignedRow({
-    Key? key,
+    super.key,
     required this.children,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(context) => Row(
@@ -158,9 +158,9 @@ class RightAlignedRow extends StatelessWidget {
   final List<Widget> children;
 
   const RightAlignedRow({
-    Key? key,
+    super.key,
     required this.children,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(context) => Row(
@@ -176,10 +176,10 @@ class CenterAlignedRow extends StatelessWidget {
   final List<Widget> children;
 
   const CenterAlignedRow({
-    Key? key,
+    super.key,
     this.crossAxisAlignment = CrossAxisAlignment.center,
     required this.children,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(context) => Row(
@@ -197,11 +197,11 @@ class SideToSideRow extends StatelessWidget {
   final Widget right;
 
   const SideToSideRow({
-    Key? key,
+    super.key,
     this.crossAxisAlignment = CrossAxisAlignment.start,
     required this.left,
     required this.right,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(context) => Row(
